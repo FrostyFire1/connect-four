@@ -1,6 +1,7 @@
 class Display
   def initialize
-    @state = Array.new(6) {Array.new(7, '⬤')}
+    @default_symbol = '⬤'
+    @state = Array.new(6) {Array.new(7, @default_symbol)}
   end
 
   def show_state
