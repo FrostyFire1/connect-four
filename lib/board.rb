@@ -16,4 +16,19 @@ class Board
   def update(row,column,value)
     @state[row][column] = value
   end
+
+  def win_row?
+    @state.each do |row|
+      start = 0
+      finish = 3
+      finish.upto(row.length-1) do 
+        symbols = row[start..finish]
+        p symbols, start, finish
+        return true if symbols.uniq.length == 1 && symbols[0] != @default_symbol
+        start += 1
+        finish += 1
+      end
+    end
+    false
+  end
 end
