@@ -19,14 +19,10 @@ class Board
 
   def win_row?
     @state.each do |row|
-      start = 0
-      finish = 3
-      finish.upto(row.length-1) do 
+      3.upto(row.length-1) do |finish|
+        start = finish-3
         symbols = row[start..finish]
-        p symbols, start, finish
         return true if symbols.uniq.length == 1 && symbols[0] != @default_symbol
-        start += 1
-        finish += 1
       end
     end
     false
