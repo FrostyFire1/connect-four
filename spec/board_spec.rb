@@ -32,7 +32,7 @@ describe Board do
     end
   end
 
-  describe "#win_column" do
+  describe "#win_column?" do
     context "when a player has 4 circles in a column" do
       before do
         state = board.instance_variable_get(:@state)
@@ -50,14 +50,55 @@ describe Board do
       before do
         state = board.instance_variable_get(:@state)
         state[1][1] = player1.symbol
-        state[2][1] = player2.symbol
+        state[2][2] = player2.symbol
         state[3][1] = player1.symbol
-        state[4][1] = player2.symbol
+        state[4][3] = player2.symbol
       end
       it "returns false" do
         expect(board.win_column?).to be false
       end
     end
 
+  end
+
+  describe "#win_diagonal?" do
+    context "when a player has 4 circles diagonally down" do
+      before do
+        state = board.instance_variable_get(:@state)
+        state[2][3] = player1.symbol
+        state[3][4] = player1.symbol
+        state[4][5] = player1.symbol
+        state[5][6] = player1.symbol
+      end
+      it "returns true" do
+        expect(board.win_diagonal?).to be true
+      end
+    end
+
+    context "when a player has 4 circles diagonally up" do
+      before do
+        state = board.instance_variable_get(:@state)
+        state[5][3] = player1.symbol
+        state[4][4] = player1.symbol
+        state[3][5] = player1.symbol
+        state[2][6] = player1.symbol
+      end
+      it "returns true" do
+        expect(board.win_diagonal?).to be true
+      end
+    end
+
+    context "when neither player has 4 circles in a diagonal" do
+      before do
+        state = board.instance_variable_get(:@state)
+        state[5][3] = player1.symbol
+        state[4][4] = player2.symbol
+        state[2][5] = player2.symbol
+        state[2][6] = player1.symbol
+      end
+      it "returns false" do
+        expect(board.win_diagonal?).to be false
+      end
+    end
   end
 end
