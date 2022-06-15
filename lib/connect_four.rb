@@ -32,6 +32,7 @@ class ConnectFour
     input = @display.get_column
     unless valid_input?(input)
       puts "You selected an invalid column! Please try again"
+      sleep 0.75
       return
     end
     column = input.to_i
