@@ -60,6 +60,7 @@ describe ConnectFour do
   describe "#play_game" do
     before do
       board = connect_game.instance_variable_get(:@board)
+      allow(connect_game).to receive(:play_turn).and_return(nil)
       allow(board).to receive(:win?).and_return(false,true)
     end
     it "sends message to play_turn" do

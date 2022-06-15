@@ -1,4 +1,5 @@
 require_relative "display.rb"
+require_relative "player.rb"
 class ConnectFour
   def initialize(player1, player2)
     @board = Board.new('◯')
@@ -24,8 +25,10 @@ class ConnectFour
   end
 
   def play_turn
+    @display.show_state
     column = @display.get_column
-    place_circle(@current_player, column) unless column.nil?
+    return if column.nil?
+    place_circle(@current_player, column)
     next_player 
   end
 
