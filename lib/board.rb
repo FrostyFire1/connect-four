@@ -12,4 +12,8 @@ class Board
   def at(row,column)
     @state[row,column]
   end
+
+  def update(row,column,value)
+    @state[row,column] = value
+  end
 end
