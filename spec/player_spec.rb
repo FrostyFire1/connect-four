@@ -3,7 +3,7 @@ require "player.rb"
 describe Player do
 
   describe "#to_ansii" do
-    subject(:ansii_encoder) { described_class.new("John", "none")}
+    subject(:ansii_encoder) { described_class.new("John", "green")}
     context "when supported ansii color is chosen" do
 
       it "returns correct ansii code for red" do

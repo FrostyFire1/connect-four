@@ -1,7 +1,9 @@
 class Player
-  def initialize(name, color)
+  attr_reader(:symbol)
+  def initialize(name, color, symbol = '⬤')
     @name = name
     @color = to_ansii(color)
+    @symbol = @color+symbol
   end
 
   def to_ansii(color)

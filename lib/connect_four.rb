@@ -1,8 +1,20 @@
-require './display.rb'
+require_relative "display.rb"
 class ConnectFour
   def initialize(player1, player2)
-    @board = Display.new
+    @board = Board.new('◯')
+    @display = Display.new(@board)
     @player1 = player1
     @player2 = player2
+  end
+
+  def place_circle(player, column)
+    column -= 1 # Arrays start at 0, player chooses from 1 to length of board
+    upper_bound = @board.state.length - 1
+    upper_bound.downto(0) do |row|
+      if @board.state[row][column] == @board.default_symbol
+        @board.state[row][column] = player.symbol
+        return
+      end
+    end
   end
 end

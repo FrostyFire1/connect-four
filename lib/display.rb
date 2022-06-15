@@ -1,8 +1,7 @@
-require "./board.rb"
+require_relative "board.rb"
 class Display
-  def initialize
-    @default_symbol = '◯'
-    @board = Board.new(@default_symbol)
+  def initialize(board)
+    @board = board
   end
 
   def show_state
@@ -17,5 +16,3 @@ class Display
     puts " └#{bottom_line}┘"
   end
 end
-
-Display.new.show_state
