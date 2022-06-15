@@ -22,7 +22,4 @@ class Display
     return input if input.between?(1, row_length)
   end
 
-  def win?
-    false
-  end
 end
