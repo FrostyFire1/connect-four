@@ -7,6 +7,7 @@ class ConnectFour
     @player1 = player1
     @player2 = player2
     @current_player = player1
+    @potential_winner = nil
   end
 
   def place_circle(player, column)
@@ -35,12 +36,13 @@ class ConnectFour
     end
     column = input.to_i
     place_circle(@current_player, column)
+    @potential_winner = @current_player
     next_player 
   end
 
   def valid_input?(column)
     column = Integer(column) rescue nil
-    return false if column.nil?
+    return false if column.nil? || @board.column_full?(column)
     row_length = @board.state[0].length
     return true if column.between?(1, row_length)
     false
@@ -48,5 +50,7 @@ class ConnectFour
 
   def play_game
     play_turn until @board.win?
+    @display.show_state
+    @display.win_message(@potential_winner.name)
   end
 end

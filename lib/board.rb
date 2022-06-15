@@ -68,4 +68,14 @@ class Board
     end
     false
   end
+
+  def column_full?(column)
+    column -= 1 #Arrays start at 0, Player selection starts at 1
+    column_symbols = []
+    row_count = @state.length - 1
+    0.upto(row_count) do |row|
+      column_symbols << @state[row][column]
+    end
+    column_symbols.none? {|symbol| symbol == @default_symbol}
+  end
 end

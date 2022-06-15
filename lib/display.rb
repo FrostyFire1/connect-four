@@ -20,6 +20,11 @@ class Display
   end
 
   def get_column
+    print "Please select a column: "
     gets.chomp
+  end
+
+  def win_message(player_name)
+    puts "Congratulations, #{player_name}! You won!"
   end
 end

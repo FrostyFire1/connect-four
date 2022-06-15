@@ -101,4 +101,27 @@ describe Board do
       end
     end
   end
+
+  describe "#column_full?" do
+    context "when a column is full" do
+      before do
+        state = board.instance_variable_get(:@state)
+        row_count = state.length - 1
+        0.upto(row_count) do |row|
+          state[row][0] = player1.symbol
+        end
+      end
+      it "returns true" do
+        result = board.column_full?(1)
+        expect(result).to be true
+      end
+    end
+
+    context "when a column isn't full" do
+      it "returns false" do
+        result = board.column_full?(1)
+        expect(result).to be false
+      end
+    end
+  end
 end
