@@ -38,4 +38,34 @@ describe ConnectFour do
       expect(cur_player).to eq(player2)
     end
   end
+
+  describe "#play_turn" do
+    context "when the input is valid" do
+      before do
+        display = connect_game.instance_variable_get(:@display)
+        allow(display).to receive(:gets).and_return('1')
+      end
+
+      it "sends message to place_circle" do
+        expect(connect_game).to receive(:place_circle)
+        connect_game.play_turn
+      end
+      it "sends message to next_player" do
+        expect(connect_game).to receive(:next_player)
+        connect_game.play_turn
+      end
+    end
+  end
+
+  describe "#play_game" do
+    it "sends message to play_turn" do
+      expect(connect_game).to receive(:play_turn)
+      connect_game.play_game
+    end
+    it "sends message to win?" do
+      board = connect_game.instance_variable_get(:@board)
+      expect(board).to receive(:win?)
+      connect_game.play_game
+    end
+  end
 end

@@ -4,4 +4,9 @@ class Board
     @default_symbol = default_symbol
     @state = Array.new(6) {Array.new(7, default_symbol)}
   end
+
+  def win?
+    false
+  end
+  
 end

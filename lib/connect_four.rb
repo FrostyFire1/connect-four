@@ -22,4 +22,10 @@ class ConnectFour
   def next_player
     @current_player = @current_player == @player1 ? @player2 : @player1
   end
+
+  def play_turn
+    column = @display.get_column
+    place_circle(@current_player, column) unless column.nil?
+    next_player
+  end
 end

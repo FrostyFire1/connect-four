@@ -22,7 +22,6 @@ describe Display do
         result = display.get_column
         expect(result).to be_nil
       end
-      
     end
   end
 end
