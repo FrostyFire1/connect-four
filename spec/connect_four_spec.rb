@@ -17,5 +17,16 @@ describe ConnectFour do
         expect(affected_cell).to eq(player1.symbol)
       end
     end
+
+    context "when there's a circle at the bottom" do
+      it "places it one column up" do
+        board_state = connect_game.instance_variable_get(:@board).state
+        board_bound = board_state.length - 1
+        connect_game.place_circle(player1,1)
+        connect_game.place_circle(player1,1)
+        affected_cell = board_state[board_bound-1].first
+        expect(affected_cell).to eq(player1.symbol)
+      end
+    end
   end
 end
