@@ -3,8 +3,8 @@ require "display.rb"
 require "player.rb"
 
 describe ConnectFour do
-  let(:player1) { Player.new("Marcus", "red")}
-  let(:player2) { Player.new("John", "yellow")}
+  let(:player1) {instance_double(Player,name: "John", symbol:"\e[38;5;9m⬤\e[0m")}
+  let(:player2) {instance_double(Player,name: "Mark", symbol:"\e[38;5;12m⬤\e[0m")}
   subject(:connect_game) {described_class.new(player1, player2)}
   describe "#place_circle" do
 
@@ -62,6 +62,7 @@ describe ConnectFour do
       board = connect_game.instance_variable_get(:@board)
       allow(connect_game).to receive(:play_turn).and_return(nil)
       allow(board).to receive(:win?).and_return(false,true)
+      connect_game.instance_variable_set(:@potential_winner, player1)
     end
     it "sends message to play_turn" do
       expect(connect_game).to receive(:play_turn)
