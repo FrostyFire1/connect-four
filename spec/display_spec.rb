@@ -14,13 +14,13 @@ describe Display do
       end
     end
 
-    context "when the provided column is invalid" do
+    context "when the provided column is invalid once" do
       before do
-        allow(display).to receive(:gets).and_return('asdf')
+        allow(display).to receive(:gets).and_return('asdf','7')
       end
-      it "returns nil" do
-        result = display.get_column
-        expect(result).to be_nil
+      it "displays error message" do
+        expect(display).to receive(:puts).with("Invalid column! Please try again").once
+        display.get_column
       end
     end
   end
