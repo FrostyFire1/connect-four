@@ -15,9 +15,10 @@ class ConnectFour
     upper_bound.downto(0) do |row|
       if @board.state[row][column] == @board.default_symbol
         @board.state[row][column] = player.symbol
-        return
+        return true
       end
     end
+    false
   end
 
   def next_player
@@ -26,10 +27,23 @@ class ConnectFour
 
   def play_turn
     @display.show_state
-    column = @display.get_column
-    return if column.nil?
+    puts "Current player: #{@current_player.name}"
+    input = @display.get_column
+    unless valid_input?(input)
+      puts "You selected an invalid column! Please try again"
+      return
+    end
+    column = input.to_i
     place_circle(@current_player, column)
     next_player 
+  end
+
+  def valid_input?(column)
+    column = Integer(column) rescue nil
+    return false if column.nil?
+    row_length = @board.state[0].length
+    return true if column.between?(1, row_length)
+    false
   end
 
   def play_game

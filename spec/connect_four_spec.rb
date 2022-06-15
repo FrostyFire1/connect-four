@@ -74,4 +74,31 @@ describe ConnectFour do
     end
   end
 
+  describe "#valid_input?" do
+    context "when a valid column is provided" do
+      it "returns true" do
+        input = 7
+        result = connect_game.valid_input?(input)
+        expect(result).to be true
+      end
+    end
+    context "when an invalid column is provided" do
+      it "returns false" do
+        invalid_1 = 12
+        invalid_2 = -23
+        result1 = connect_game.valid_input?(invalid_1)
+        result2 = connect_game.valid_input?(invalid_2)
+        expect(result1).to be false
+        expect(result2).to be false
+      end
+    end
+    context "when a non-numeric value is provided" do
+      it "returns false" do
+        not_valid = 'asdf'
+        result = connect_game.valid_input?(not_valid)
+        expect(result).to be false
+      end
+    end
+  end
+
 end

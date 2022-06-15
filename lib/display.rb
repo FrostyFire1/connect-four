@@ -20,10 +20,6 @@ class Display
   end
 
   def get_column
-    input = gets.chomp.to_i
-    row_length = @board.state[0].length
-    return input if input.between?(1, row_length)
-    puts "Invalid column! Please try again"
-    get_column
+    gets.chomp
   end
 end
