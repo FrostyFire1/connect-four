@@ -3,7 +3,7 @@ class Player
   def initialize(name, color, symbol = '⬤')
     @name = name
     @color = to_ansii(color)
-    @symbol = @color+symbol
+    @symbol = @color+symbol+"\e[0m"
   end
 
   def to_ansii(color)
