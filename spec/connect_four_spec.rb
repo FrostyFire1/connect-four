@@ -57,4 +57,20 @@ describe ConnectFour do
     end
   end
 
+  describe "#play_game" do
+    before do
+      board = connect_game.instance_variable_get(:@board)
+      allow(board).to receive(:win?).and_return(false,true)
+    end
+    it "sends message to play_turn" do
+      expect(connect_game).to receive(:play_turn)
+      connect_game.play_game
+    end
+    it "sends message to win?" do
+      board = connect_game.instance_variable_get(:@board)
+      expect(board).to receive(:win?)
+      connect_game.play_game
+    end
+  end
+
 end

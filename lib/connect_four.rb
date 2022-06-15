@@ -26,6 +26,10 @@ class ConnectFour
   def play_turn
     column = @display.get_column
     place_circle(@current_player, column) unless column.nil?
-    next_player
+    next_player 
+  end
+
+  def play_game
+    play_turn until @board.win?
   end
 end
