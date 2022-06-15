@@ -9,4 +9,7 @@ class Board
     false
   end
   
+  def at(row,column)
+    @state[row,column]
+  end
 end
