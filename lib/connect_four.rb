@@ -5,6 +5,7 @@ class ConnectFour
     @display = Display.new(@board)
     @player1 = player1
     @player2 = player2
+    @current_player = player1
   end
 
   def place_circle(player, column)
@@ -16,5 +17,9 @@ class ConnectFour
         return
       end
     end
+  end
+
+  def next_player
+    @current_player = @current_player == @player1 ? @player2 : @player1
   end
 end
