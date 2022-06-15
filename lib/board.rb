@@ -27,4 +27,20 @@ class Board
     end
     false
   end
+
+  def win_column? 
+    row_length = @state.length - 1
+    column_height = @state[0].length - 1
+    0.upto(column_height) do |column|
+      3.upto(row_length) do |row_finish|
+        start = row_finish - 3
+        symbols = []
+        start.upto(row_finish) do |row|
+          symbols << @state[row][column]
+        end
+        return true if symbols.uniq.length == 1 && symbols[0] != @default_symbol
+      end
+    end
+    false
+  end
 end
