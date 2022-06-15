@@ -13,8 +13,8 @@ class ConnectFour
     column -= 1 # Arrays start at 0, player chooses from 1 to length of board
     upper_bound = @board.state.length - 1
     upper_bound.downto(0) do |row|
-      if @board.state[row][column] == @board.default_symbol
-        @board.state[row][column] = player.symbol
+      if @board.at(row,column) == @board.default_symbol
+        @board.update(row, column, player.symbol)
         return true
       end
     end
